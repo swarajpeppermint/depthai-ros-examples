@@ -9,6 +9,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
+# add_compile_definitions(IS_ROS2)
+
 find_package(ament_cmake REQUIRED)
 
 find_package(OpenCV 4 QUIET COMPONENTS imgproc highgui)
@@ -24,8 +26,8 @@ find_package(vision_msgs REQUIRED)
 find_package(depthai_ros_msgs REQUIRED)
 find_package(depthai_bridge REQUIRED)
 
-# find_package(depthai CONFIG REQUIRED PATHS "/home/sachin/Desktop/luxonis/depthai-core/build/install/lib/cmake/depthai") 
-find_package(depthai CONFIG REQUIRED) 
+find_package(depthai CONFIG REQUIRED PATHS "/home/sachin/Desktop/luxonis/depthai-core/build/install/lib/cmake/depthai") 
+# find_package(depthai CONFIG REQUIRED) 
 
 set(dependencies
 rclcpp
@@ -69,6 +71,7 @@ ament_target_dependencies(stereo_node
 
 target_link_libraries(stereo_node 
                       depthai::core 
+                      depthai_bridge
                       ${OpenCV_LIBRARIES} 
                       ${PROJECT_NAME})
 
@@ -78,6 +81,7 @@ ament_target_dependencies(mobilenet_node
                           )    
 
 target_link_libraries(mobilenet_node 
+                      depthai_bridge
                       depthai::core 
                       ${OpenCV_LIBRARIES} 
                       ${PROJECT_NAME})

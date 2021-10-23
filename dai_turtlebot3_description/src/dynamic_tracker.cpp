@@ -119,8 +119,8 @@ int main(int argc, char** argv) {
     dai::rosBridge::BridgePublisher<geometry_msgs::msg::PoseStamped, dai::Tracklets> trackerPublish(trackletsQueue,
                                                                                                       node, 
                                                                                                       std::string("tracked_point"),
-                                                                                                      toRosMsg, 
-                                                                                                      rclcpp::QoS(rclcpp::KeepLast(1)).transient_local().reliable());
+                                                                                                      toRosMsg,
+                                                                                                      rclcpp::QoS(rclcpp::KeepLast(10)));
 
     trackerPublish.addPubisherCallback();
     rclcpp::spin(node);

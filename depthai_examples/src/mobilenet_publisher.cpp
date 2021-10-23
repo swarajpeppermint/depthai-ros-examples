@@ -43,7 +43,7 @@ int main(int argc, char** argv){
                                                                                      &rgbConverter, 
                                                                                      std::placeholders::_1, 
                                                                                      std::placeholders::_2) , 
-                                                                                     rclcpp::QoS(rclcpp::KeepLast(1)).transient_local().reliable(),
+                                                                                     10,
                                                                                      color_uri,
                                                                                      "color");
 
@@ -56,8 +56,7 @@ int main(int argc, char** argv){
                                                                                      vision_msgs::msg::Detection2DArray&)>(&dai::rosBridge::ImgDetectionConverter::toRosMsg),
                                                                                      &detConverter, 
                                                                                      std::placeholders::_1, 
-                                                                                     std::placeholders::_2) , 
-                                                                                     rclcpp::QoS(rclcpp::KeepLast(1)).transient_local().reliable());
+                                                                                     std::placeholders::_2));
 
     // rgbPublish.startPublisherThread();
     detectionPublish.startPublisherThread(); // addPubisherCallback works only when the dataqueue is non blocking.
