@@ -10,13 +10,10 @@
 
 // #include <depthai_examples/daiUtility.hpp>
 // Inludes common necessary includes for development using depthai library
-#ifdef IS_ROS2
 #include "depthai/depthai.hpp"
-#include <depthai_bridge/ImageConverter.hpp>
-#endif
 
-// #include <depthai_bridge/BridgePublisher.hpp>
-// #include <depthai_bridge/ImageConverter.hpp>
+#include <depthai_bridge/BridgePublisher.hpp>
+#include <depthai_bridge/ImageConverter.hpp>
 
 // using namespace std::placeholders;
 int main(int argc, char **argv) {
