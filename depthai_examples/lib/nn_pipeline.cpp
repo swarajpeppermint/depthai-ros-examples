@@ -29,9 +29,9 @@ void MobileNetDetectionExample::initDepthaiDev(std::string nnPath){
 
     // Link plugins CAM -> NN -> XLINK
     colorCam->preview.link(detectionNetwork->input);
-    if(syncNN) detectionNetwork->passthrough.link(xlinkOut->input);
-    else colorCam->preview.link(xlinkOut->input);
-
+    // if(syncNN) detectionNetwork->passthrough.link(xlinkOut->input);
+    // else colorCam->preview.link(xlinkOut->input);
+    colorCam->video.link(xlinkOut->input)
     detectionNetwork->out.link(nnOut->input);
 
     _dev = std::make_unique<dai::Device>(_p);

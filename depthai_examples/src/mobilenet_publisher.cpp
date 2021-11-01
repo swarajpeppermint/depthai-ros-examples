@@ -59,7 +59,7 @@ int main(int argc, char** argv){
                                                                                      std::placeholders::_2));
 
     // rgbPublish.startPublisherThread();
-    detectionPublish.startPublisherThread(); // addPubisherCallback works only when the dataqueue is non blocking.
+    detectionPublish.addPubisherCallback(); // addPubisherCallback works only when the dataqueue is non blocking.
     rgbPublish.addPubisherCallback();
     // detectionPublish.addPubisherCallback();
 
