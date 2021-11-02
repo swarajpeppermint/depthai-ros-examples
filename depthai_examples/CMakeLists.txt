@@ -71,7 +71,6 @@ ament_target_dependencies(stereo_node
 
 target_link_libraries(stereo_node 
                       depthai::core 
-                      depthai_bridge
                       ${OpenCV_LIBRARIES} 
                       ${PROJECT_NAME})
 
@@ -81,7 +80,6 @@ ament_target_dependencies(mobilenet_node
                           )    
 
 target_link_libraries(mobilenet_node 
-                      depthai_bridge
                       depthai::core 
                       ${OpenCV_LIBRARIES} 
                       ${PROJECT_NAME})
