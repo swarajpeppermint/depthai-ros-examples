@@ -37,10 +37,10 @@ dai::Pipeline createPipeline(bool enableDepth, bool lrcheck, bool extended, bool
     xoutImu->setStreamName("imu");
 
     // MonoCamera
-    monoLeft->setResolution(dai::MonoCameraProperties::SensorResolution::THE_720_P);
+    monoLeft->setResolution(dai::MonoCameraProperties::SensorResolution::THE_400_P);
     monoLeft->setBoardSocket(dai::CameraBoardSocket::LEFT);
     monoLeft->setFps(stereo_fps);
-    monoRight->setResolution(dai::MonoCameraProperties::SensorResolution::THE_720_P);
+    monoRight->setResolution(dai::MonoCameraProperties::SensorResolution::THE_400_P);
     monoRight->setBoardSocket(dai::CameraBoardSocket::RIGHT);
     monoRight->setFps(stereo_fps);
 
@@ -151,8 +151,8 @@ int main(int argc, char** argv){
     
     dai::rosBridge::ImageConverter converter(deviceName + "_left_camera_optical_frame", true);
     dai::rosBridge::ImageConverter rightconverter(deviceName + "_right_camera_optical_frame", true);
-    auto leftCameraInfo = converter.calibrationToCameraInfo(calibrationHandler, dai::CameraBoardSocket::LEFT, 1280, 720); 
-    auto rightCameraInfo = converter.calibrationToCameraInfo(calibrationHandler, dai::CameraBoardSocket::RIGHT, 1280, 720); 
+    auto leftCameraInfo = converter.calibrationToCameraInfo(calibrationHandler, dai::CameraBoardSocket::LEFT, 640, 400); 
+    auto rightCameraInfo = converter.calibrationToCameraInfo(calibrationHandler, dai::CameraBoardSocket::RIGHT, 640, 400); 
     const std::string leftPubName = rectify?std::string("left/image_rect"):std::string("left/image_raw");
     const std::string rightPubName = rectify?std::string("right/image_rect"):std::string("right/image_raw");
 
