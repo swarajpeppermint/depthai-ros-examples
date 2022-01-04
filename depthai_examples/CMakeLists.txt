@@ -163,6 +163,8 @@ elseif( CATKIN_DEVEL_PREFIX OR CATKIN_BUILD_BINARY_PACKAGE )
         opencv_imgproc
         opencv_highgui
       )
+
+      install(TARGETS "${node_name}" RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
       
   endmacro() 
 
@@ -187,6 +189,12 @@ elseif( CATKIN_DEVEL_PREFIX OR CATKIN_BUILD_BINARY_PACKAGE )
     opencv_highgui
   )
 
+  install(TARGETS nodelet_stereo
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+
   dai_add_node(crop_control_service ros1_src/crop_control_service.cpp)
   dai_add_node(mobilenet_node ros1_src/mobilenet_publisher.cpp)
   dai_add_node(rgb_node ros1_src/rgb_publisher.cpp)
@@ -198,6 +206,7 @@ elseif( CATKIN_DEVEL_PREFIX OR CATKIN_BUILD_BINARY_PACKAGE )
   dai_add_node(stereo_node ros1_src/stereo_publisher.cpp)
   dai_add_node(yolov4_spatial_node ros1_src/yolov4_spatial_publisher.cpp)
 
+  
 
   target_compile_definitions(mobilenet_node PRIVATE BLOB_PATH="${mobilenet_blob}")
   target_compile_definitions(yolov4_spatial_node PRIVATE BLOB_PATH="${tiny_yolo_v4_blob}")
